@@ -2,13 +2,12 @@ package GEditor;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Circle extends Shape{
+public class Rectangle extends Shape {
 
-	public Circle(int x, int y, int w, int h, Color c) {
+	public Rectangle(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -21,15 +20,16 @@ public class Circle extends Shape{
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(c);
-		g.fillOval(x-(int)(width/2), y-(int)(width/2), width, width);
+		g.fillRect(x, y, width, height);
 		
 	}
 
 	@Override
 	public boolean isOn(int x, int y) {
 		// TODO Auto-generated method stub
-		int dis = (int)(Math.sqrt(Math.pow(this.x-x, 2)+ Math.pow(this.y-y, 2)));
-		if(dis >= 0 && dis <= width/2) return true;
+		if(x >= this.x && x <= (this.x + width)
+				&& y >= this.y && y <= this.y + height)
+			return true;
 		return false;
 	}
 
@@ -46,10 +46,10 @@ public class Circle extends Shape{
 		
 		if(y1 <= y2) {
 			y = y1;
-			width = y2 - y1;
+			height = y2 - y1;
 		} else {
 			y = y2;
-			width = y1 - y2;
+			height = y1 - y2;
 		}
 		
 	}
