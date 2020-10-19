@@ -24,6 +24,7 @@ public class GraphicsEditor {
 	private int xLoc=0, yLoc=0;
 	private Color cirColor = Color.YELLOW;
 	private Color rectColor = Color.BLUE;
+	private Color lineColor = Color.RED;
 	private int mode = 0;
 	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
 	
@@ -52,6 +53,22 @@ public class GraphicsEditor {
 			}
 		});
 		
+		JButton lineButton = new JButton("Line");
+		lineButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				mode = 3;
+			}
+		});
+		
+		JButton drawButton = new JButton("Draw");
+		drawButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				mode = 4;
+			}
+		});
+		
 		JButton deleButton = new JButton("Delete");
 		deleButton.addActionListener(new ActionListener() {
 			
@@ -65,6 +82,8 @@ public class GraphicsEditor {
 		innerPanel.setPreferredSize(new Dimension(WIDTH, BHEIGHT));
 		innerPanel.add(circleButton);
 		innerPanel.add(rectButton);
+		innerPanel.add(lineButton);
+		innerPanel.add(drawButton);
 		innerPanel.add(deleButton);
 		panel.add(innerPanel);
 		
@@ -108,6 +127,14 @@ public class GraphicsEditor {
 					Rectangle rect = new Rectangle(xLoc, yLoc, 0, 0, rectColor);
 					shapeList.add(rect);
 					
+				} else if(mode == 3){
+					Line line = new Line(xLoc, yLoc, 0, 0, lineColor);
+					shapeList.add(line);
+					
+				} else if(mode == 4){
+					Draw draw = new Draw(xLoc, yLoc, 0, 0, lineColor);
+					shapeList.add(draw);
+					
 				} else if(mode == -1) {
 					for(int i=0; i< shapeList.size(); i++) {
 						if(shapeList.get(i).isOn(xLoc, yLoc)) {
@@ -145,12 +172,21 @@ public class GraphicsEditor {
 			public void mouseDragged(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
-				if(mode == 1 || mode == 2) {
+				if(mode == 1 || mode == 2 || mode == 3) {
 					int size = shapeList.size();
 					int x2 = e.getX();
 					int y2 = e.getY();
 					shapeList.get(size-1).resize(xLoc, yLoc, x2, y2);
+				
+				} else if(mode == 4) {
+					int size = shapeList.size();
+					int x2 = e.getX();
+					int y2 = e.getY();
+					shapeList.get(size-1).resize(xLoc, yLoc, x2, y2);
+					xLoc = x2;
+					yLoc = y2;
 				}
+				
 				frame.getContentPane().repaint();
 			}
 
