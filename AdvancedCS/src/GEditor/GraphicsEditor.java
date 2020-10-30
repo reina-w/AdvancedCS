@@ -40,6 +40,7 @@ public class GraphicsEditor {
 		//panel set up
 		JPanel panel = new JPanel();
 		
+		//panel layout
 		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
 		panel.setLayout(boxlayout);
 		panel.setBorder(BorderFactory.createTitledBorder("Graphics Editor"));
@@ -168,7 +169,8 @@ public class GraphicsEditor {
 	    textSize.setEditable(true);
 	    textSize.setPreferredSize(new Dimension(blankW, blankH));
 	 
-		
+		//innerPanel holds all the buttons on the top of the frame
+	    //there are separated into three lines
 		JPanel innerPanel = new JPanel();
 		bArr[0] = new JPanel();
 		bArr[0].setBackground(Color.gray);
