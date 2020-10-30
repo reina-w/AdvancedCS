@@ -2,6 +2,7 @@ package GEditor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -20,8 +21,20 @@ public class Circle extends Shape{
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(c);
-		g.fillOval(x-(int)(width/2), y-(int)(width/2), width, width);
+		if(empty) {
+			g.setColor(c);
+			g.drawOval(x-(int)(width/2), y-(int)(width/2), width, width);
+			
+		} else if(shadow) {
+			g.setColor(Color.gray);
+			g.fillOval(x-(int)(width/2)+trans, y-(int)(width/2)-trans, width, width);
+			g.setColor(c);
+			g.fillOval(x-(int)(width/2), y-(int)(width/2), width, width);
+			
+		} else {
+			g.setColor(c);
+			g.fillOval(x-(int)(width/2), y-(int)(width/2), width, width);
+		}
 		
 	}
 
