@@ -170,7 +170,7 @@ public class GraphicsEditor {
 	    textSize.setPreferredSize(new Dimension(blankW, blankH));
 	 
 		//innerPanel holds all the buttons on the top of the frame
-	    //there are separated into three lines
+	    //they are separated into three lines
 		JPanel innerPanel = new JPanel();
 		bArr[0] = new JPanel();
 		bArr[0].setBackground(Color.gray);
