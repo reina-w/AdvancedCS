@@ -1,7 +1,10 @@
 package GEditor;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 
 public class Line extends Shape{
 
@@ -18,19 +21,23 @@ public class Line extends Shape{
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(c);
-		g.drawLine(x, y, x+width, y+height);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(c);
+        g2.setStroke(new BasicStroke(lineWeight));
+        g2.draw(new Line2D.Float(x, y, x+width, y+height));
 	}
 
 	@Override
 	public boolean isOn(int x, int y) {
 		// TODO Auto-generated method stub
 
-		double slope = (double)height / width;
-		if((double)(x-this.x)/(y-this.y) - slope <= 5 &&
-				(double)(x-this.x)/(y-this.y) - slope >= -5
+		double slope = (double) height / width;
+		
+		if((double)(x-this.x)/(y-this.y) - slope <= 3 &&
+				(double)(x-this.x)/(y-this.y) - slope >= -3
 				&& x>= this.x && x <= this.x+width
 				&& y >= this.y && y <= this.y+height) return true;
+		
 		return false;
 	}
 

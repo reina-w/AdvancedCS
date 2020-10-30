@@ -2,6 +2,7 @@ package GEditor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Rectangle extends Shape {
 
@@ -19,9 +20,20 @@ public class Rectangle extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(c);
-		g.fillRect(x, y, width, height);
-		
+		if(empty) {
+			g.setColor(c);
+			g.drawRect(x, y, width, height);
+			
+		} else if(shadow) {
+			g.setColor(Color.gray);
+			g.fillRect(x+trans, y-trans, width, height);
+			g.setColor(c);
+			g.fillRect(x, y, width, height);
+			
+		} else {
+			g.setColor(c);
+			g.fillRect(x, y, width, height);
+		}
 	}
 
 	@Override

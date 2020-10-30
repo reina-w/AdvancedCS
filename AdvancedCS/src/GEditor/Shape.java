@@ -2,13 +2,19 @@ package GEditor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseListener;
 
 public abstract class Shape {
 
 	protected int x, y, width, height;
 	protected Color c;
-	protected String type;
+	protected String input;
+	protected int textSize;
+	protected int lineWeight;
+	protected boolean shadow;
+	protected boolean empty;
+	protected int trans = 5;
 	
 	public Shape(int x,int y, int w, int h, Color c) {
 		this.x = x; this.y = y;
@@ -17,7 +23,7 @@ public abstract class Shape {
 	}
 	
 	public void move(int x1, int y1, int x2, int y2) {
-		x = x2-x1; y = y2-y1;
+		x += x2-x1; y += y2-y1;
 	}
 	
 	public abstract Shape copy();
